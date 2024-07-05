@@ -15,7 +15,7 @@ def get_contact():
     contacts = Contact.query.all()
 
     # Convert each contact to a JSON object
-    json_Contact = list(map(lambda x: x.to_json(), contacts))
+    json_Contact = list(map(lambda x: x.to_dict(), contacts))
 
     # Return the contacts as a JSON response
     return jsonify({"contacts": json_Contact})
@@ -25,7 +25,7 @@ def get_contact():
 def create_contact():
     # Get JSON data from request
     first_name = request.json.get("firstName")
-    last_name = request.json.get("lastname")
+    last_name = request.json.get("lastName")
     email = request.json.get("email")
 
     # Validate required fields
